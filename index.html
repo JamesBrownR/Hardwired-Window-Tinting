@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardwired Window Tinting | Professional Auto & Home Window Tinting in Salt Lake City</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #2d2d2d;
+            --accent: #c8102e;
+            --text-light: #ffffff;
+            --text-dark: #1a1a1a;
+            --bg-light: #f5f5f5;
+            --border: #404040;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 12px 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .top-bar a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .top-bar a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 20px;
+            margin-top: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('Hardwired-Window-Tinting.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--text-light);
+            padding: 18px 45px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(200, 16, 46, 0.3);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            border-color: var(--text-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(200, 16, 46, 0.4);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            padding: 40px 30px;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* Reviews */
+        .reviews-container {
+            margin-top: 50px;
+        }
+
+        .review-card {
+            background: var(--bg-light);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .reviewer-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .stars {
+            color: #ffa500;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .review-body {
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .show-more-btn {
+            display: block;
+            margin: 30px auto 0;
+            padding: 15px 40px;
+            background: var(--secondary);
+            color: var(--text-light);
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .show-more-btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 700px;
+            margin: 50px auto 0;
+            background: var(--bg-light);
+            padding: 40px;
+            border: 2px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--accent);
+            color: var(--text-light);
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Map Section */
+        .map-container {
+            margin-top: 50px;
+            border: 3px solid var(--border);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 450px;
+            display: block;
+        }
+
+        /* Hours Section */
+        .hours-table {
+            max-width: 600px;
+            margin: 50px auto 0;
+            background: var(--bg-light);
+            border: 2px solid var(--border);
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .time {
+            color: var(--text-dark);
+        }
+
+        .closed {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Square Booking */
+        .square-container {
+            max-width: 800px;
+            margin: 50px auto 0;
+            text-align: center;
+        }
+
+        .square-link {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 20px 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .square-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 60px 20px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            line-height: 2;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            border: 2px solid var(--border);
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                margin-top: 48px;
+            }
+
+            section {
+                padding: 60px 15px;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            .hours-row {
+                padding: 15px 20px;
+            }
+
+            .map-container iframe {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar with Phone -->
+    <div class="top-bar">
+        <a href="tel:+18019897550">📞 (801) 989-7550</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>HARDWIRED WINDOW TINTING</h1>
+            <p>Professional Auto & Home Window Tinting in Salt Lake City</p>
+            <a href="#contact" class="cta-button">Get a Quote Today</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Automotive Tinting</h3>
+                <p>Premium window tinting for cars, trucks, and SUVs. Protect your vehicle's interior while enhancing style and comfort with our high-quality films.</p>
+            </div>
+            <div class="service-card">
+                <h3>Residential Tinting</h3>
+                <p>Home window tinting solutions that reduce heat, block UV rays, and increase privacy. Energy-efficient options available for every budget.</p>
+            </div>
+            <div class="service-card">
+                <h3>Commercial Tinting</h3>
+                <p>Professional tinting services for businesses and commercial properties. Improve energy efficiency and create a professional appearance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews">
+        <h2>Customer Reviews</h2>
+        <div class="reviews-container">
+            <div class="reviews-visible" id="reviewsVisible"></div>
+            <div class="reviews-hidden hidden" id="reviewsHidden"></div>
+            <button class="show-more-btn hidden" id="showMoreBtn" onclick="showMoreReviews()"></button>
+        </div>
+    </section>
+
+    <!-- Book Appointment Section -->
+    <section id="booking">
+        <h2>Book an Appointment</h2>
+        <div class="square-container">
+            <p style="margin-bottom: 30px; font-size: 1.1rem; color: var(--text-dark);">Schedule your window tinting service online with Square</p>
+            <!-- Replace YOUR_LOCATION_ID with your actual Square location ID -->
+            <a href="https://square.site/book/YOUR_LOCATION_ID" target="_blank" class="square-link">Book Now on Square</a>
+        </div>
+    </section>
+
+    <!-- Hours Section -->
+    <section id="hours">
+        <h2>Business Hours</h2>
+        <div class="hours-table">
+            <div class="hours-row">
+                <span class="day">Monday</span>
+                <span class="time">9 AM – 6 PM</span>
+            </div>
+            <div class="hours-row">
+                <span class="day">Tuesday</span>
+                <span class="time">9 AM – 6 PM</span>
+            </div>
+            <div class="hours-row">
+                <span class="day">Wednesday</span>
+                <span class="time">9 AM – 6 PM</span>
+            </div>
+            <div class="hours-row">
+                <span class="day">Thursday</span>
+                <span class="time">9 AM – 6 PM</span>
+            </div>
+            <div class="hours-row">
+                <span class="day">Friday</span>
+                <span class="time">9 AM – 6 PM</span>
+            </div>
+            <div class="hours-row">
+                <span class="day">Saturday</span>
+                <span class="time">9 AM – 6 PM</span>
+            </div>
+            <div class="hours-row">
+                <span class="day">Sunday</span>
+                <span class="time closed">Closed</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact">
+        <h2>Get a Free Quote</h2>
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone *</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="service">Service Type *</label>
+                <select id="service" name="service" required>
+                    <option value="">Select a service</option>
+                    <option value="automotive">Automotive Tinting</option>
+                    <option value="residential">Residential Tinting</option>
+                    <option value="commercial">Commercial Tinting</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Map Section -->
+    <section id="location">
+        <h2>Visit Us</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d774009.4975205169!2d-112.39381685252599!3d40.7295812692046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa9f3df065af11445%3A0x99d214269f5ca928!2sHardwired%20Window%20Tinting!5e0!3m2!1sen!2sus!4v1761784386392!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <p style="font-size: 1.1rem; color: var(--text-dark); margin-bottom: 15px;">
+                <strong>1030 S Redwood Rd, Salt Lake City, UT 84104</strong>
+            </p>
+            <a href="https://www.google.com/maps/place/Hardwired+Window+Tinting/@40.7295813,-112.3938169,9z/data=!4m12!1m2!2m1!1sHardwired+Window+Tinting!3m8!1s0xa9f3df065af11445:0x99d214269f5ca928!8m2!3d40.9617385!4d-112.1162136!9m1!1b1!15sChhIYXJkd2lyZWQgV2luZG93IFRpbnRpbmdaGiIYaGFyZHdpcmVkIHdpbmRvdyB0aW50aW5nkgEWd2luZG93X3RpbnRpbmdfc2VydmljZZoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQyMUdjRko2U2xWaVZUVnNZVVpHZEZSRE1YZGthbXh6WTFWMFRWcHRZeEFC4AEA-gEECG8QIg!16s%2Fg%2F11zjg2l5sb?entry=ttu&g_ep=EgoyMDI1MTAyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="cta-button" style="display: inline-block; padding: 15px 35px; font-size: 1rem;">View on Google Maps</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Hardwired Window Tinting</h3>
+                <p>Professional window tinting services in Salt Lake City. Quality work, honest prices, and exceptional customer service.</p>
+                <p style="margin-top: 20px;"><strong>Owner: Angelo</strong></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <a href="tel:+18019897550">(801) 989-7550</a>
+                <p>1030 S Redwood Rd<br>Salt Lake City, UT 84104</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#services">Services</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#booking">Book Appointment</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/hardwiredtint?igsh=NXVjZTlqNXY0em84" target="_blank" title="Instagram">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/JamesBrownR/Hardwired-Window-Tinting" target="_blank" title="GitHub">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Hardwired Window Tinting. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Reviews Array - Easy to add more reviews
+        const reviews = [
+            { name: "Review 1", rating: 5, body: "" },
+            { name: "Review 2", rating: 5, body: "" },
+            { name: "Review 3", rating: 5, body: "" },
+            { name: "Review 4", rating: 5, body: "" },
+            { name: "Review 5", rating: 5, body: "" },
+            { name: "Review 6", rating: 5, body: "" }
+        ];
+
+        let visibleCount = 6;
+
+        function renderReviews() {
+            const visibleContainer = document.getElementById('reviewsVisible');
+            const hiddenContainer = document.getElementById('reviewsHidden');
+            const showMoreBtn = document.getElementById('showMoreBtn');
+
+            visibleContainer.innerHTML = '';
+            hiddenContainer.innerHTML = '';
+
+            reviews.slice(0, visibleCount).forEach(review => {
+                visibleContainer.innerHTML += createReviewCard(review);
+            });
+
+            if (reviews.length > visibleCount) {
+                reviews.slice(visibleCount).forEach(review => {
+                    hiddenContainer.innerHTML += createReviewCard(review);
+                });
+                const remaining = reviews.length - visibleCount;
+                showMoreBtn.textContent = `Show ${remaining} More ${remaining === 1 ? 'Review' : 'Reviews'}`;
+                showMoreBtn.classList.remove('hidden');
+            } else {
+                showMoreBtn.classList.add('hidden');
+            }
+        }
+
+        function createReviewCard(review) {
+            const stars = '★'.repeat(review.rating);
+            const bodyHTML = review.body ? `<div class="review-body">${review.body}</div>` : '';
+            
+            return `
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-name">${review.name}</div>
+                        <div class="stars">${stars}</div>
+                    </div>
+                    ${bodyHTML}
+                </div>
+            `;
+        }
+
+        function showMoreReviews() {
+            const remaining = reviews.length - visibleCount;
+            visibleCount += Math.min(remaining, 6);
+            renderReviews();
+        }
+
+        // Contact Form Handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+
+            // Create mailto link
+            const subject = encodeURIComponent(`Quote Request from ${formData.name}`);
+            const body = encodeURIComponent(
+                `Name: ${formData.name}\n` +
+                `Email: ${formData.email}\n` +
+                `Phone: ${formData.phone}\n` +
+                `Service: ${formData.service}\n` +
+                `Message: ${formData.message}`
+            );
+
+            // Open default email client
+            window.location.href = `mailto:info@hardwiredtinting.com?subject=${subject}&body=${body}`;
+            
+            // Show success message
+            alert('Thank you! Your message has been prepared. Please send the email from your email client.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Initialize reviews on page load
+        renderReviews();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 60;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
